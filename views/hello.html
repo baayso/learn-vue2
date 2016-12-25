@@ -24,6 +24,9 @@
         <div>
             {{ message }}
         </div>
+        <div>
+            {{ message | capitalize | filterA('哈哈', 123456) }}
+        </div>
 
         <br>
 
@@ -38,6 +41,11 @@
 
         <div>
             <p v-if="seen">Now you see me</p>
+            <p v-if="(message === 'true')">{{ !!message ? 'YES' : 'NO' }}</p>
+            <template v-else>
+                <div v-if="message === 'false'">{{ !!message ? 'YES' : 'NO' }}</div>
+                <div v-else>{{ message.split('').reverse().join('') }}</div>
+            </template>
         </div>
 
         <br>
@@ -45,9 +53,18 @@
         <div>
             <ol>
                 <li v-for="todo in todos">
-                    {{ todo.text }}
+                    <div v-if="(todo.text.length >= 4)">
+                        {{ todo.text }}
+                    </div>
                 </li>
             </ol>
+        </div>
+
+        <br>
+
+        <div>
+            <p>Original message: "{{ message }}"</p>
+            <p>Computed reversed message: "{{ reversedMessage }}"</p>
         </div>
 
     </div>
