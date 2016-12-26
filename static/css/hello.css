@@ -1,0 +1,12 @@
+.font {
+    color: green;
+    font-style: inherit;
+}
+
+.one {
+    border: 1px red solid;
+}
+
+.two {
+    border: 1px skyblue solid;
+}

@@ -6,7 +6,10 @@
     <meta charset="UTF-8">
     <title>Hello World</title>
 
+    <link rel="stylesheet" href="../static/css/hello.css"/>
+
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="../static/js/data.js"></script>
 </head>
 <body>
 
@@ -67,6 +70,9 @@
             <p>Computed reversed message: "{{ reversedMessage }}"</p>
         </div>
 
+        <br>
+
+        <div class="font" :class="(!!message ? 'two' : 'one')">{{ fullName }}</div>
     </div>
 </div>
 

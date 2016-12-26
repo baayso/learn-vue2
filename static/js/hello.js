@@ -1,13 +1,15 @@
 var app = new Vue({
     el: '#app',
     data: {
-        message: 'hello vue.js!',
+        message: message,
         seen: true,
         todos: [
             {text: 'Learn JavaScript'},
             {text: 'Learn Vue'},
             {text: new Date().toLocaleString()}
-        ]
+        ],
+        firstName: 'Foo',
+        lastName: 'Bar'
     },
     filters: {
         capitalize: function (value) {
@@ -31,16 +33,30 @@ var app = new Vue({
             this.seen = !!msg;
 
             this.todos[0].text = msg;
+
+            this.fullName = 'Hello World';
         },
         reverseMessage: function () {
-            this.message = this.message.split('').reverse().join('')
+            this.message = this.message.split('').reverse().join('');
         }
     },
     computed: {
         // a computed getter
         reversedMessage: function () {
             // `this` points to the vm instance
-            return this.message.split('').reverse().join('')
+            return this.message.split('').reverse().join('');
+        },
+        fullName: {
+            // getter
+            get: function () {
+                return this.firstName + ' ' + this.lastName;
+            },
+            // setter
+            set: function (newValue) {
+                var names = newValue.split(' ');
+                this.firstName = names[0];
+                this.lastName = names[names.length - 1];
+            }
         }
     }
 });
