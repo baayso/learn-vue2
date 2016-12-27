@@ -10,6 +10,62 @@
 
 <div>
     <div id="for-example">
+        <ul>
+            <li v-for="item in items">
+                {{ item.message }}
+            </li>
+        </ul>
+
+        <br>
+        <br>
+
+        <ul>
+            <li v-for="(item, index) in items">
+                {{ parentMessage }} - {{ index }} - {{ item.message }}
+            </li>
+        </ul>
+
+        <br>
+        <br>
+
+        <!-- 用 of 替代 in 作为分隔符，因为它是最接近 JavaScript 迭代器的语法 -->
+        <div v-for="item of items">
+            {{ item.message }}
+        </div>
+
+        <br>
+        <br>
+
+        <!-- Template v-for -->
+        <ul>
+            <template v-for="item in items">
+                <li>{{ item.message }}</li>
+                <li>{{ item.message + ' Template' }}</li>
+            </template>
+        </ul>
+
+        <div id="repeat-object">
+            <!-- 对象迭代 v-for -->
+            <ul>
+                <li v-for="value in object">
+                    {{ value }}
+                </li>
+            </ul>
+
+            <br>
+
+            <div v-for="(value, key, index) in object">
+                {{ index }}. {{ key }} : {{ value }}
+            </div>
+        </div>
+
+        <br>
+
+        <!-- 整数迭代 v-for -->
+        <div>
+            <span v-for="n in 10">{{ n }}</span>
+        </div>
+
     </div>
 </div>
 
@@ -17,8 +73,22 @@
     var forExample = new Vue({
         el: '#for-example',
         data: {
-        },
-        methods: {
+            parentMessage: 'Parent',
+            items: [
+                {message: 'Foo' },
+                {message: 'Bar' }
+            ]
+        }
+    });
+
+    new Vue({
+        el: '#repeat-object',
+        data: {
+            object: {
+                FirstName: 'John',
+                LastName: 'Doe',
+                Age: 30
+            }
         }
     });
 </script>
