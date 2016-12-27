@@ -44,11 +44,10 @@
 
         <div>
             <p v-if="seen">Now you see me</p>
+
             <p v-if="(message === 'true')">{{ !!message ? 'YES' : 'NO' }}</p>
-            <template v-else>
-                <div v-if="message === 'false'">{{ !!message ? 'YES' : 'NO' }}</div>
-                <div v-else>{{ message.split('').reverse().join('') }}</div>
-            </template>
+            <p v-else-if="message === 'false'">{{ !!message ? 'YES' : 'NO' }}</p>
+            <p v-else>{{ message.split('').reverse().join('') }}</p>
         </div>
 
         <br>
