@@ -46,7 +46,7 @@
             <p v-if="seen">Now you see me</p>
 
             <p v-if="(message === 'true')">{{ !!message ? 'YES' : 'NO' }}</p>
-            <p v-else-if="message === 'false'">{{ !!message ? 'YES' : 'NO' }}</p>
+            <p v-else-if="message === 'false'">{{ !!message ? 'NO' : 'YES' }}</p>
             <p v-else>{{ message.split('').reverse().join('') }}</p>
         </div>
 
