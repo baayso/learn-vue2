@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染</title>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div>
+    <div id="if-example">
+        <button @click="change()">Change</button>
+
+        <br>
+
+        <h1 v-if="ok">Yes</h1>
+
+        <br>
+        <br>
+
+        <h1 v-if="ok">YES</h1>
+        <h1 v-else>NO</h1>
+
+        <br>
+        <br>
+
+        <template v-if="ok">
+            <h1>Title</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+
+        <br>
+        <br>
+
+        <div v-if="Math.random() > 0.5">
+            Sorry
+        </div>
+        <div v-else>
+            Not sorry
+        </div>
+
+        <br>
+        <br>
+
+        <!-- 2.1.0 新增 -->
+        <div v-if="type === 'A'">
+            A
+        </div>
+        <div v-else-if="type === 'B'">
+            B
+        </div>
+        <div v-else-if="type === 'C'">
+            C
+        </div>
+        <div v-else>
+            Not A/B/C
+        </div>
+
+        <br>
+        <br>
+
+        <p>
+            <template v-if="loginType === 'username'">
+                <label>Username</label>
+                <input placeholder="Enter your username" key="username-input">
+            </template>
+            <template v-else>
+                <label>Email</label>
+                <input placeholder="Enter your email address" key="email-input">
+            </template>
+            <br>
+            <button @click="changeLoginType()">Toggle login type</button>
+        </p>
+
+        <!-- v-show 的元素会始终渲染并保持在 DOM 中。v-show 是简单的切换元素的 CSS 属性 display -->
+        <!-- 注意：v-show 不支持 <template> 语法 -->
+        <!-- 如果需要频繁切换使用 v-show 较好，如果在运行时条件不大可能改变则使用 v-if 较好 -->
+        <h1 v-show="ok">Hello!</h1>
+
+    </div>
+</div>
+
+<script>
+    var ifExample = new Vue({
+        el: '#if-example',
+        data: {
+            ok: true,
+            type: 'D',
+            loginType: 'username'
+        },
+        methods: {
+            change: funcation() {
+                this.ok = !this.ok;
+                this.type = this.type === 'D' ? 'C' : 'D';
+            },
+            changeLoginType: funcation() {
+                this.loginType = this.loginType === 'username' ? 'email' : username;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
