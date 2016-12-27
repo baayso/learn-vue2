@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理器</title>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div>
+    <div id="event-example">
+        <div>
+            <button v-on:click="counter += 1">增加 1</button>
+            <p>这个按钮被点击了 {{ counter }} 次。</p>
+        </div>
+
+
+        <div>
+            <button v-on:click="greet">Greet</button>
+        </div>
+
+        <br>
+
+        <div>
+            <button v-on:click="say('hi')">Say hi</button>
+            <button v-on:click="say('what')">Say what</button>
+        </div>
+
+        <br>
+
+        <button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+
+        <br>
+        <br>
+
+        <!-- 只有在 keyCode 是 13 时调用 vm.submit() -->
+        <input v-on:keyup.13="submit" v-model="keyupMsg">
+        <!-- 记住所有的 keyCode 比较困难，所以 Vue 为最常用的按键提供了别名 -->
+        <!-- 全部的按键别名：http://cn.vuejs.org/v2/guide/events.html#按键修饰符 -->
+        <input v-on:keyup.enter="submit" v-model="keyupMsg">
+
+        <br>
+        <br>
+
+        <!--Ctrl + C -->
+        <input @keyup.ctrl.67="copy(copyMsg)" v-model="copyMsg">
+        <!-- Alt + Click -->
+        <div @click.alt="doSomething">Do something</div>
+    </div>
+</div>
+
+<script>
+    var eventExample = new Vue({
+        el: '#event-example',
+        data: {
+            counter: 0,
+            name: 'Vue.js',
+            keyupMsg: '',
+            copyMsg: '哈哈'
+        },
+        // 在 `methods` 对象中定义方法
+        methods: {
+            greet: function (event) {
+                // `this` 在方法里指当前 Vue 实例
+                alert('Hello ' + this.name + '!');
+                // `event` 是原生 DOM 事件
+                alert(event.target.tagName);
+            },
+            say: function (message) {
+                alert(message)
+            },
+            warn: function (message, event) {
+                // 现在我们可以访问原生事件对象
+                if (event) {
+                    event.preventDefault();
+                }
+
+                alert(message)
+            },
+            submit: function () {
+                alert(this.keyupMsg)
+            },
+            copy: function (message) {
+                alert(message)
+            },
+            doSomething: function (event) {
+                alert(event.target.tagName);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
